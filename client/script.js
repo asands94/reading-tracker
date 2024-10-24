@@ -3,6 +3,7 @@ const bookContainer = document.querySelector('.book-container')
 const bookName = document.querySelector('.book-name')
 const bookAuthor = document.querySelector('.book-author')
 const bookImage = document.querySelector('.book-image')
+const commentContainer = document.querySelector('.comment-container')
 const commentForm = document.querySelector('.comment-form')
 const commentText = document.querySelector('#content')
 const commentButton = document.querySelector('.comment-button')
@@ -46,30 +47,48 @@ const getBooks = async () => {
 getBooks()
 
 const getBook = async () => {
-  bookContainer.style.display = 'none'
+  try {
+    bookContainer.style.display = 'none'
+    const res = await axios.get(`http://localhost:3000/api/books/${bookId}`)
+    const book = res.data
 
-  const res = await axios.get(`http://localhost:3000/api/books/${bookId}`)
-  const book = res.data
+    bookName.innerHTML = book.name
 
-  bookName.innerHTML = book.name
+    book.author.forEach((auth) => {
+      bookAuthor.innerHTML = `By: ${auth.name}`
+    })
 
-  book.author.forEach((auth) => {
-    bookAuthor.innerHTML = `By: ${auth.name}`
-  })
+    bookImage.setAttribute('src', book.image)
+    commentForm.style.display = 'flex'
+    commentContainer.style.display = 'flex'
 
-  bookImage.setAttribute('src', book.image)
-  commentForm.style.display = 'flex'
+    book.comments.forEach((comment) => {
+      const commentDiv = document.createElement('div')
+      commentDiv.setAttribute('class', 'comment-card')
+      const content = document.createElement('p')
+      content.innerHTML = comment.content
+
+      commentContainer.appendChild(commentDiv)
+      commentDiv.appendChild(content)
+    })
+  } catch (e) {
+    console.error(e.message)
+  }
 }
 
 const addComment = async () => {
-  commentButton.addEventListener('click', async (e) => {
-    e.preventDefault()
+  try {
+    commentButton.addEventListener('click', async (e) => {
+      e.preventDefault()
 
-    await axios.post(`http://localhost:3000/api/books/${bookId}/comments`, {
-      content: commentText.value,
+      await axios.post(`http://localhost:3000/api/books/${bookId}/comments`, {
+        content: commentText.value,
+      })
+      commentText.value = ''
     })
-    commentText.value = ''
-  })
+  } catch (e) {
+    console.error(e.message)
+  }
 }
 
 addComment()
