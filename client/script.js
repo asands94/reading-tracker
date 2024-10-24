@@ -9,7 +9,6 @@ const commentText = document.querySelector('#content')
 const commentButton = document.querySelector('.comment-button')
 
 // GLOBAL VARIABLES
-let bookId
 
 // FUNCTIONS
 const getBooks = async () => {
@@ -17,9 +16,12 @@ const getBooks = async () => {
     const res = await axios.get(`http://localhost:3000/api/books`)
     const books = res.data
     books.forEach((book) => {
-      bookId = book._id
       const bookDiv = document.createElement('div')
+      bookDiv.setAttribute('class', 'book-div')
+
       const bookImg = document.createElement('img')
+      bookImg.setAttribute('id', book._id)
+
       const bookName = document.createElement('h3')
 
       bookImg.setAttribute('src', book.image)
@@ -46,8 +48,9 @@ const getBooks = async () => {
 
 getBooks()
 
-const getBook = async () => {
+const getBook = async (e) => {
   try {
+    let bookId = e.target.id
     bookContainer.style.display = 'none'
     const res = await axios.get(`http://localhost:3000/api/books/${bookId}`)
     const book = res.data
