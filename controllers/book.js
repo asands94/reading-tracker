@@ -11,7 +11,7 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
   try {
-    const books = await Book.find()
+    const books = await Book.find().populate('comments')
     res.status(200).json(books)
   } catch (e) {
     console.error(e.message)
@@ -20,7 +20,7 @@ const getBooks = async (req, res) => {
 
 const getBook = async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id)
+    const book = await Book.findById(req.params.id).populate('comments')
     res.status(200).json(book)
   } catch (e) {
     console.error(e.message)
@@ -47,10 +47,46 @@ const deleteBook = async (req, res) => {
   }
 }
 
+const createComment = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id)
+    book.comments.push(req.body)
+    book.save()
+    res.status(201).json(book)
+  } catch (e) {
+    console.error(e.message)
+  }
+}
+
+const updateComment = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id)
+    book.comments.id(req.params.cId).content = req.body.content
+    book.save()
+    res.status(201).json(book)
+  } catch (e) {
+    console.error(e.message)
+  }
+}
+
+const deleteComment = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id)
+    book.comments.id(req.params.cId).deleteOne()
+    book.save()
+    res.status(201).json(book)
+  } catch (e) {
+    console.error(e.message)
+  }
+}
+
 module.exports = {
   createBook,
   getBooks,
   getBook,
   updateBook,
   deleteBook,
+  createComment,
+  updateComment,
+  deleteComment,
 }
