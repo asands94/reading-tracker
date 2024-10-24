@@ -29,6 +29,10 @@ const getBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
   try {
+    const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    })
+    res.status(200).json(book)
   } catch (e) {
     console.error(e.message)
   }
@@ -36,6 +40,8 @@ const updateBook = async (req, res) => {
 
 const deleteBook = async (req, res) => {
   try {
+    const book = await Book.findByIdAndDelete(req.params.id)
+    res.status(200).json(`Book: ${book.name} deleted`)
   } catch (e) {
     console.error(e.message)
   }
@@ -45,6 +51,6 @@ module.exports = {
   createBook,
   getBooks,
   getBook,
-  // updateBook,
-  // deleteBook
+  updateBook,
+  deleteBook,
 }
