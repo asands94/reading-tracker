@@ -1,0 +1,19 @@
+.author-container {
+  display: flex;
+  gap: 20px;
+}
+
+.author-div {
+  margin-top: 100px;
+  border-radius: 0.5em;
+  height: 350px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 0 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.author-div img {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+}

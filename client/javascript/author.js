@@ -7,6 +7,8 @@ const getAuthors = async () => {
 
     authors.forEach((author) => {
       const authorDiv = document.createElement('div')
+      authorDiv.setAttribute('class', 'author-div')
+
       const authorImg = document.createElement('img')
       const authorName = document.createElement('h3')
 
@@ -15,8 +17,8 @@ const getAuthors = async () => {
       authorName.innerHTML = author.name
 
       authorContainer.appendChild(authorDiv)
-      authorDiv.appendChild(authorImg)
       authorDiv.appendChild(authorName)
+      authorDiv.appendChild(authorImg)
     })
   } catch (e) {
     console.error(e.message)
