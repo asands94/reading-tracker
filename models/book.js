@@ -10,6 +10,7 @@ const commentSchema = new Schema(
 const bookSchema = new Schema(
   {
     name: { type: String, required: true },
+    image: { type: String, required: false },
     author_id: [{ type: Schema.Types.ObjectId, ref: 'Author' }],
     rating: { type: Number, required: false },
     description: { type: String, required: false },
