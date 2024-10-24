@@ -9,6 +9,7 @@ const commentText = document.querySelector('#content')
 const commentButton = document.querySelector('.comment-button')
 
 // GLOBAL VARIABLES
+let bookId
 
 // FUNCTIONS
 const getBooks = async () => {
@@ -50,7 +51,10 @@ getBooks()
 
 const getBook = async (e) => {
   try {
-    let bookId = e.target.id
+    if (!bookId) {
+      bookId = e.target.id
+    }
+
     bookContainer.style.display = 'none'
     const res = await axios.get(`http://localhost:3000/api/books/${bookId}`)
     const book = res.data
@@ -88,6 +92,7 @@ const addComment = async () => {
         content: commentText.value,
       })
       commentText.value = ''
+      getBook()
     })
   } catch (e) {
     console.error(e.message)
