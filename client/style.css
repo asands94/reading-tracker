@@ -1,2 +1,6 @@
 body {
 }
+
+.comment-form {
+  display: none;
+}

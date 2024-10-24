@@ -11,7 +11,7 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
   try {
-    const books = await Book.find().populate('comments')
+    const books = await Book.find().populate('comments author')
     res.status(200).json(books)
   } catch (e) {
     console.error(e.message)
@@ -20,7 +20,7 @@ const getBooks = async (req, res) => {
 
 const getBook = async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id).populate('comments')
+    const book = await Book.findById(req.params.id).populate('comments author')
     res.status(200).json(book)
   } catch (e) {
     console.error(e.message)
