@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+header,
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: rgb(110, 110, 110);
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+li {
+  padding: 0 20px;
+}
+
+li a {
+  font-size: larger;
+  color: white;
+  text-decoration: none;
+}
+
+li a:hover {
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+}

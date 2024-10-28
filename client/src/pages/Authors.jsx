@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import styles from '../styles/authors.module.css'
 
 const Authors = () => {
   const [authors, setAuthors] = useState([])
@@ -14,13 +15,22 @@ const Authors = () => {
   }, [])
 
   const allAuthors = authors.map((author) => (
-    <div key={author._id}>
+    <div key={author._id} className={styles.authorDiv}>
       <h3>{author.name}</h3>
-      <img className='author-image' src={author.image} alt={author.name} />
+      <img
+        className={styles.authorImage}
+        src={author.image}
+        alt={author.name}
+      />
     </div>
   ))
 
-  return <>{allAuthors}</>
+  return (
+    <>
+      <h1>Author List</h1>
+      <section className={styles.authorContainer}>{allAuthors}</section>
+    </>
+  )
 }
 
 export default Authors

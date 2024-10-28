@@ -1,0 +1,21 @@
+/* BOOKS PAGE */
+
+.bookContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.bookDiv {
+  margin-top: 100px;
+  border-radius: 0.5em;
+  height: 370px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 0 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bookImage {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+}
