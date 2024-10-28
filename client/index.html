@@ -1,42 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reading Tracker</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="script.js"></script>
+    <title>Vite + React</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="./index.html">Books</a></li>
-          <li><a href="./html/authors.html">Authors</a></li>
-          <li><a href="./html/genres.html">Genres</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h1>Your Books</h1>
-      <section class="book-container"></section>
-      <section class="book-details">
-        <h3 class="book-name"></h3>
-        <h3 class="book-author"></h3>
-        <img class="book-image" />
-      </section>
-
-      <section class="comment-form">
-        <form>
-          <textarea name="content" id="content"> </textarea>
-          <button class="comment-button">add comment</button>
-        </form>
-      </section>
-      <section class="comment-container">
-        <h4>Your Thoughts</h4>
-      </section>
-    </main>
-    <footer></footer>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
